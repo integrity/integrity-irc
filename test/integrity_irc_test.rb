@@ -9,7 +9,7 @@ end
 
 require File.dirname(__FILE__) + "/../lib/integrity/notifier/irc"
 
-class IntegrityNotifierIRCTest < Test::Unit::TestCase
+class IntegrityIRCTest < Test::Unit::TestCase
   include RR::Adapters::TestUnit
   include Integrity::Notifier::Test
 

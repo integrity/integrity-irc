@@ -14,9 +14,9 @@ README.markdown
 Rakefile
 integrity-irc.gemspec
 lib/integrity/notifier/irc.rb
-test/irc_test.rb
+test/integrity_irc_test.rb
 ]
-  s.test_files        = %w[test/irc_test.rb]
+  s.test_files        = %w[test/integrity_irc_test.rb]
   s.add_dependency "integrity"
   s.add_dependency "shout-bot"
 end
