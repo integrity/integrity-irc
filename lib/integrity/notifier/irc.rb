@@ -29,5 +29,7 @@ module Integrity
         end
       end
     end
+
+    register IRC
   end
 end
