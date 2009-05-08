@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name              = "integrity-irc"
   s.rubyforge_project = "integrity"
-  s.version           = "0.0.6"
+  s.version           = "0.0.7"
   s.date              = "2009-03-18"
   s.summary           = "IRC notifier for the Integrity continuous integration server"
   s.summary           = "IRC notifier for the Integrity continuous integration server"
