@@ -15,6 +15,7 @@ class IntegrityIRCTest < Test::Unit::TestCase
 
   def setup
     setup_database
+    @options = { "uri" => "irc://irc.freenode.net/integrity" }
   end
 
   def notifier
@@ -22,17 +23,21 @@ class IntegrityIRCTest < Test::Unit::TestCase
   end
 
   def test_configuration_form
-    assert_form_have_option "uri", "irc://irc.freenode.net/test"
+    assert provides_option?("uri", @options["uri"])
   end
 
   def test_send_notification
-    config = { "uri" => "irc://foo:bar@irc.freenode.net/test" }
-    stub(ShoutBot).shout("irc://foo:bar@irc.freenode.net/test") { nil }
-    Integrity::Notifier::IRC.new(Integrity::Commit.gen, config).deliver!
+    stub(ShoutBot).shout(@options["uri"]) { nil }
+    Integrity::Notifier::IRC.new(Integrity::Commit.gen, @options).deliver!
   end
 
-  def test_notification_full_message
-    assert notification_successful.include?("successful")
-    assert notification_failed.include?("failed")
+  def test_short_message
+    build = Integrity::Commit.gen(:successful)
+    assert Integrity::Notifier::IRC.new(build, @options.dup).short_message.
+      include?("successful")
+
+    build = Integrity::Commit.gen(:failed)
+    assert Integrity::Notifier::IRC.new(build, @options.dup).short_message.
+      include?("failed")
   end
 end
